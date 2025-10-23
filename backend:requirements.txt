@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+python-multipart
+transformers
+torch
+scikit-learn
+nltk
+textblob
+whisper
