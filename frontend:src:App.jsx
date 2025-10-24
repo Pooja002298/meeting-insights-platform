@@ -1,19 +1,12 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import MeetingDetails from "./pages/MeetingDetails";
-import Analytics from "./pages/Analytics";
-import "./styles/globals.css";
+import SentimentForm from "./components/SentimentForm";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/meeting/:id" element={<MeetingDetails />} />
-        <Route path="/analytics" element={<Analytics />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="App">
+      <h1>Meeting Insights Platform</h1>
+      <SentimentForm />
+    </div>
   );
 }
 

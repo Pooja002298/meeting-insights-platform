@@ -1,11 +1,8 @@
 fastapi
 uvicorn
-sqlalchemy
-pydantic
-python-multipart
-transformers
-torch
-scikit-learn
-nltk
 textblob
-whisper
+speechrecognition
+scikit-learn
+numpy
+scipy
+python-multipart

@@ -2,16 +2,11 @@
 __pycache__/
 *.pyc
 venv/
-.env
 
-# Node
+# Node / React
 node_modules/
-dist/
 build/
+dist/
 
-# SQLite
-*.db
-*.sqlite3
-
-# macOS
+# OS / Editor
 .DS_Store

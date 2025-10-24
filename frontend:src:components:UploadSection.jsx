@@ -1,33 +1,25 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, {useState} from 'react'
+import { uploadMeeting } from '../api'
 
-export default function UploadSection() {
-  const [file, setFile] = useState(null);
-  const [status, setStatus] = useState("");
+export default function UploadForm({onUploaded}){
+  const [file, setFile] = useState(null)
+  const [title, setTitle] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  const handleUpload = async () => {
-    const formData = new FormData();
-    formData.append("file", file);
-    setStatus("Uploading...");
-    const res = await axios.post("http://localhost:8000/upload/", formData);
-    setStatus(`Uploaded: ${res.data.filename}`);
-  };
+  async function submit(e){
+    e.preventDefault()
+    if(!file) return
+    setLoading(true)
+    const resp = await uploadMeeting(file, title || file.name)
+    setLoading(false)
+    if(onUploaded) onUploaded(resp)
+  }
 
   return (
-    <div className="bg-white p-6 rounded-2xl shadow mb-8">
-      <input
-        type="file"
-        accept=".mp4,.mp3,.wav"
-        onChange={(e) => setFile(e.target.files[0])}
-        className="mb-4"
-      />
-      <button
-        onClick={handleUpload}
-        className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-      >
-        Upload
-      </button>
-      <p className="mt-2 text-sm text-gray-500">{status}</p>
-    </div>
-  );
+    <form onSubmit={submit} className="p-4 bg-white rounded shadow">
+      <input className="mb-2 w-full" type="text" placeholder="Meeting title" value={title} onChange={e=>setTitle(e.target.value)} />
+      <input className="mb-2 w-full" type="file" accept="audio/*,video/mp4" onChange={e=>setFile(e.target.files[0])} />
+      <button className="px-4 py-2 bg-blue-600 text-white rounded" disabled={loading}>{loading? 'Uploading...':'Upload'}</button>
+    </form>
+  )
 }

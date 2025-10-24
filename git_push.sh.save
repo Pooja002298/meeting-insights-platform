@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Auto-stage, commit, and push to GitHub
+
+# Go to project root (optional if already there)
+# cd /path/to/meeting-insights-platform
+
+# Stage all changes
+git add .
+
+# Commit with timestamp
+TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+git commit -m "Auto-update: $TIMESTAMP"
+
+# Push to main branch
+git push origin main
+
+echo "✅ All changes pushed to GitHub at $TIMESTAMP"
+
